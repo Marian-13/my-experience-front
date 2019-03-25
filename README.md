@@ -11,3 +11,11 @@ $ yarn
 ```
 
 [Details](https://github.com/facebook/create-react-app/issues/6099)
+
+##### Command to run specs
+
+```
+$ yarn test
+```
+
+[Details](https://facebook.github.io/create-react-app/docs/running-tests)
