@@ -1,6 +1,7 @@
 import axios from 'axios';
+import M from 'materialize-css';
 
-import { getToken, isUserLoggedIn } from '../lib/auth';
+import { getAuthToken, isUserLoggedIn } from '../lib/auth';
 
 class OwnClient extends axios {}
 
@@ -17,10 +18,11 @@ const successResponseHandler = (response) => {
 };
 
 const failResponseHandler = (error) => {
-  const { status, data, code, message } = error.response.data;
+  const { status, data, message } = error.response.data;
+  const response = error.response;
 
-  if (status == 'fail') return Promise.reject({ status, data, response });
-  if (status == 'error') return M.toast({ html: `Internal Server Error: ${message}` });
+  if (status === 'fail') return Promise.reject({ status, data, response });
+  if (status === 'error') return M.toast({ html: `Internal Server Error: ${message}` });
 };
 
 OwnClient.interceptors.request.use(beforeRequestHandler, error => Promise.reject(error));
