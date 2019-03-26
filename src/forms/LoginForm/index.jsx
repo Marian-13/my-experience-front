@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Button,
   Card,
@@ -9,6 +8,7 @@ import {
 import M from 'materialize-css';
 
 import { saveAuthToken } from '../../lib/auth';
+import { redirectTo } from '../../lib/path';
 import client from '../../api/OwnClient';
 
 export default class LoginForm extends React.Component {
@@ -17,12 +17,12 @@ export default class LoginForm extends React.Component {
     password: ''
   }
 
-  handleEmailChange = (_event, email) => {
-    this.setState({ email });
+  handleEmailChange = (event) => {
+    this.setState({ email: event.target.value });
   }
 
-  handlePasswordChange = (_event, password) => {
-    this.setState({ password });
+  handlePasswordChange = (event) => {
+    this.setState({ password: event.target.value });
   }
 
   handleLogin = () => {
@@ -33,6 +33,8 @@ export default class LoginForm extends React.Component {
       .post('/user_token', data)
       .then(({ data }) => {
         saveAuthToken(data.token);
+
+        redirectTo('/');
       })
       .catch(() => {
         M.toast({ html: 'Invalid email and/or password.' });
