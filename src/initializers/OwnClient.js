@@ -1,3 +1,5 @@
 import OwnClient from '../api/OwnClient';
 
-if (process.env.NODE_ENV === 'development') OwnClient.defaults.baseURL = 'http://localhost:3000';
+const baseURL = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : '';
+
+OwnClient.defaults.baseURL = `${baseURL}/api`;
