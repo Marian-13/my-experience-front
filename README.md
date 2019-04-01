@@ -45,3 +45,4 @@ $ yarn test
 - Configure webpack to simplify imports
 - Use CDN in production?
 - Fonts?
+- Better error communication
