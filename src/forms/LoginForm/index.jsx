@@ -46,17 +46,18 @@ export default class LoginForm extends React.Component {
       <Card
         actions={[
           <Button
+            key={0}
             s={12}
             waves='light'
             onClick={this.handleLogin}
             >
-              Log in
+              Sign in
             </Button>
         ]}
       >
         <Row>
           <h5 className="center-align">
-            Log in to <i>My Experience</i>
+            Sign in to <i>My Experience</i>
           </h5>
 
           <TextInput
