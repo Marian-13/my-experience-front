@@ -21,7 +21,7 @@ const failResponseHandler = (error) => {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    const { status, data, message } = error.response.data;
+    const { status, data } = error.response.data;
     const response = error.response;
 
     if (status === 'fail') return Promise.reject({ status, data, response });
