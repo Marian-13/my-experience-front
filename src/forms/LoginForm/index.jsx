@@ -43,30 +43,35 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <Card>
+      <Card
+        actions={[
+          <Button
+            s={12}
+            waves='light'
+            onClick={this.handleLogin}
+            >
+              Log in
+            </Button>
+        ]}
+      >
         <Row>
           <h5 className="center-align">
             Log in to <i>My Experience</i>
           </h5>
+
           <TextInput
             s={12}
             label="Email"
             type="email"
             onChange={this.handleEmailChange}
           />
+
           <TextInput
             s={12}
             label="Password"
             type="password"
             onChange={this.handlePasswordChange}
           />
-          <Button
-            s={12}
-            waves='light'
-            onClick={this.handleLogin}
-          >
-            Log in
-          </Button>
         </Row>
       </Card>
     );
