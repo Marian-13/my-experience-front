@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import ExperienceListPage from './pages/ExperienceListPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import LogoutAction from './actions/LogoutAction';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default class App extends React.Component {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
           <Route path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/experiences" component={ExperienceListPage} />
+          <Route path="/logout" component={LogoutAction} />
           <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>

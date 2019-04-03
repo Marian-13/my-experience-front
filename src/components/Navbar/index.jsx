@@ -8,10 +8,12 @@ import logo from '../../images/logo.png';
 import { isUserLoggedIn } from '../../lib/auth';
 
 export default class Navbar extends React.Component {
-  ref = React.createRef()
+  sidenavRef = React.createRef()
+  userDropdownRef = React.createRef()
 
   componentDidMount() {
-    M.Sidenav.init(this.ref.current);
+    M.Sidenav.init(this.sidenavRef.current);
+    M.Dropdown.init(this.userDropdownRef.current);
   }
 
   renderLogo() {
@@ -35,12 +37,25 @@ export default class Navbar extends React.Component {
     );
   }
 
+  renderActionsDropdown() {
+    return isUserLoggedIn() && (
+      <ul id="actions-dropdown" className="dropdown-content">
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to="/logout">Sign out</Link></li>
+      </ul>
+    );
+  }
+
   renderLinks() {
     return (
       <ul className="right hide-on-med-and-down">
-        {isUserLoggedIn ? (
+        {isUserLoggedIn() ? (
           <React.Fragment>
-            <li><Link to="/profile">Profile</Link></li>
+            <li>
+              <a ref={this.userDropdownRef} className="dropdown-trigger" href="#" data-target="actions-dropdown">
+                <Icon>person</Icon>
+              </a>
+            </li>
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -54,10 +69,11 @@ export default class Navbar extends React.Component {
 
   renderLinksForMobile() {
     return (
-      <ul ref={this.ref} className="sidenav" id="mobile-nav">
-        {isUserLoggedIn ? (
+      <ul ref={this.sidenavRef} className="sidenav" id="mobile-nav">
+        {isUserLoggedIn() ? (
           <React.Fragment>
             <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/logout">Sign out</Link></li>
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -85,6 +101,7 @@ export default class Navbar extends React.Component {
         </nav>
 
         {this.renderLinksForMobile()}
+        {this.renderActionsDropdown()}
       </React.Fragment>
     );
   }
