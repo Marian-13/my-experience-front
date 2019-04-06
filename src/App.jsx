@@ -18,7 +18,7 @@ export default class App extends React.Component {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          <PrivateRoute path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <PrivateRoute path="/experiences" component={ExperienceListPage} />
           <Route component={NotFoundPage} />
