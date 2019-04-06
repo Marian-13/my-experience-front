@@ -17,12 +17,32 @@ export default class LoginForm extends React.Component {
     password: ''
   }
 
+  componentDidMount() {
+    document.getElementById('email').focus();
+  }
+
   handleEmailChange = (event) => {
     this.setState({ email: event.target.value });
   }
 
+  handleEmailKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+
+      document.getElementById('password').focus();
+    }
+  }
+
   handlePasswordChange = (event) => {
     this.setState({ password: event.target.value });
+  }
+
+  handlePasswordKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+
+      document.getElementById('submit').focus();
+    }
   }
 
   handleLogin = () => {
@@ -46,6 +66,7 @@ export default class LoginForm extends React.Component {
       <Card
         actions={[
           <Button
+            id="submit"
             key={0}
             s={12}
             waves='light'
@@ -61,17 +82,21 @@ export default class LoginForm extends React.Component {
           </h5>
 
           <TextInput
+            id="email"
             s={12}
             label="Email"
             type="email"
             onChange={this.handleEmailChange}
+            onKeyDown={this.handleEmailKeyDown}
           />
 
           <TextInput
+            id="password"
             s={12}
             label="Password"
             type="password"
             onChange={this.handlePasswordChange}
+            onKeyDown={this.handlePasswordKeyDown}
           />
         </Row>
       </Card>
