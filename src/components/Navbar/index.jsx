@@ -34,12 +34,14 @@ export default class Navbar extends React.Component {
   renderLogo() {
     return (
       <div className="brand-logo">
-        <div className="valign-wrapper" style={{ 'padding': '0 5px' }}>
-          <img src={logo} width="30px" alt="Logo" className="hide-on-small-only"/>
-          <i style={{ 'paddingLeft': '5px' }}>
-            <span className="hide-on-small-only">My</span> Experience
-          </i>
-        </div>
+        <Link to="/">
+          <div className="valign-wrapper" style={{ 'padding': '0 5px' }}>
+            <img src={logo} width="30px" alt="Logo" className="hide-on-small-only"/>
+            <i style={{ 'paddingLeft': '5px' }}>
+              <span className="hide-on-small-only">My</span> Experience
+            </i>
+          </div>
+        </Link>
       </div>
     );
   }
