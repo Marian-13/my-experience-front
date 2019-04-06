@@ -5,13 +5,30 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../images/logo.png';
 
-import { isUserLoggedIn } from '../../lib/auth';
+import { isUserLoggedIn, deleteAuthToken } from '../../lib/auth';
+import { redirectTo } from '../../lib/path';
 
 export default class Navbar extends React.Component {
-  ref = React.createRef()
+  sidenavRef = React.createRef()
+  userDropdownRef = React.createRef()
 
   componentDidMount() {
-    M.Sidenav.init(this.ref.current);
+    M.Sidenav.init(this.sidenavRef.current);
+    M.Dropdown.init(this.userDropdownRef.current);
+  }
+
+  handleLogoutLinkClick = () => {
+    deleteAuthToken();
+
+    redirectTo('/');
+  }
+
+  renderProfileLink() {
+    return <Link to="/profile">Profile</Link>;
+  }
+
+  renderLogoutLink() {
+    return <a onClick={this.handleLogoutLinkClick}>Sign out</a>;
   }
 
   renderLogo() {
@@ -20,7 +37,7 @@ export default class Navbar extends React.Component {
         <div className="valign-wrapper" style={{ 'padding': '0 5px' }}>
           <img src={logo} width="30px" alt="Logo" className="hide-on-small-only"/>
           <i style={{ 'paddingLeft': '5px' }}>
-            <span className="hide-on-small-only">My</span>Experience
+            <span className="hide-on-small-only">My</span> Experience
           </i>
         </div>
       </div>
@@ -35,12 +52,25 @@ export default class Navbar extends React.Component {
     );
   }
 
+  renderActionsDropdown() {
+    return isUserLoggedIn() && (
+      <ul id="actions-dropdown" className="dropdown-content">
+        <li>{this.renderProfileLink()}</li>
+        <li>{this.renderLogoutLink()}</li>
+      </ul>
+    );
+  }
+
   renderLinks() {
     return (
       <ul className="right hide-on-med-and-down">
-        {isUserLoggedIn ? (
+        {isUserLoggedIn() ? (
           <React.Fragment>
-            <li><Link to="/profile">Profile</Link></li>
+            <li>
+              <a ref={this.userDropdownRef} className="dropdown-trigger" href="#" data-target="actions-dropdown">
+                <Icon>person</Icon>
+              </a>
+            </li>
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -54,10 +84,11 @@ export default class Navbar extends React.Component {
 
   renderLinksForMobile() {
     return (
-      <ul ref={this.ref} className="sidenav" id="mobile-nav">
-        {isUserLoggedIn ? (
+      <ul ref={this.sidenavRef} className="sidenav" id="mobile-nav">
+        {isUserLoggedIn() ? (
           <React.Fragment>
-            <li><Link to="/profile">Profile</Link></li>
+            <li>{this.renderProfileLink()}</li>
+            <li>{this.renderLogoutLink()}</li>
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -85,6 +116,7 @@ export default class Navbar extends React.Component {
         </nav>
 
         {this.renderLinksForMobile()}
+        {this.renderActionsDropdown()}
       </React.Fragment>
     );
   }
