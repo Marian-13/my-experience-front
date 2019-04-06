@@ -6,6 +6,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
+import PrivateRoute from './components/PrivateRoute';
 import ExperienceListPage from './pages/ExperienceListPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -19,7 +20,7 @@ export default class App extends React.Component {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/experiences" component={ExperienceListPage} />
+          <PrivateRoute path="/experiences" component={ExperienceListPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
