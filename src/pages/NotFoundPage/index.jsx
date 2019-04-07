@@ -14,7 +14,7 @@ export default class NotFoundPage extends React.Component {
   render() {
     return (
       <Row>
-        <Col s={12} m={6} l={4} offset="m3 l4">
+        <Col s={12} m={8} l={6} offset="m2 l3">
           <Card actions={[
             <Row key={0}>
               <Link to="/">

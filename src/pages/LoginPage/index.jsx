@@ -7,7 +7,7 @@ export default class LoginPage extends React.Component {
   render() {
     return (
       <Row>
-        <Col s={12} m={6} l={4} offset="m3 l4">
+        <Col s={12} m={8} l={6} offset="m2 l3">
           <LoginForm />
         </Col>
       </Row>
