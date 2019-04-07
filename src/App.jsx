@@ -20,7 +20,7 @@ export default class App extends React.Component {
         <Switch>
           <PrivateRoute path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
-          <PrivateRoute path="/experiences" component={ExperienceListPage} />
+          <PrivateRoute path="/experiences" exact component={ExperienceListPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
