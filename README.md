@@ -46,3 +46,4 @@ $ yarn test
 - Use CDN in production?
 - Fonts?
 - Better error communication
+- Class names
