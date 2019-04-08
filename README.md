@@ -2,6 +2,10 @@
 
 `$ npx create-react-app my-experience-front`
 
+##### Command used to setup storybook
+
+`npx -p @storybook/cli sb init`
+
 ##### Command to create build and move to public folder of `core`
 
 ```bash
@@ -47,3 +51,4 @@ $ yarn test
 - Fonts?
 - Better error communication
 - Class names
+- `yarn run generate component path`
