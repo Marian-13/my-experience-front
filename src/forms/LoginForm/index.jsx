@@ -71,9 +71,9 @@ export default class LoginForm extends React.Component {
             s={12}
             waves='light'
             onClick={this.handleLogin}
-            >
-              Sign in
-            </Button>
+          >
+            Sign in
+          </Button>
         ]}
       >
         <Row>

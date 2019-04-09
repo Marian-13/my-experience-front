@@ -52,3 +52,4 @@ $ yarn test
 - Better error communication
 - Class names
 - `yarn run generate component path`
+- sass variables
